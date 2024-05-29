@@ -1,6 +1,7 @@
 package com.beste.veterinary.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
 import lombok.Data;
 
 import java.time.LocalDateTime;

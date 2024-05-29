@@ -1,7 +1,7 @@
 package com.beste.veterinary.service.abstracts;
 
 import com.beste.veterinary.core.result.Result;
-import com.beste.veterinary.dto.request.CustomerRequest;
+import com.beste.veterinary.dto.request.EntityRequest.CustomerRequest;
 import org.springframework.http.ResponseEntity;
 
 public interface CustomerService {

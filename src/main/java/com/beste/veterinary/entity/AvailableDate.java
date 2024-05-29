@@ -14,7 +14,6 @@ public class AvailableDate {
     private Long id;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
     private LocalDate availableDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

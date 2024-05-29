@@ -3,7 +3,8 @@ package com.beste.veterinary.service.concretes;
 import com.beste.veterinary.core.GlobalExceptionHandler;
 import com.beste.veterinary.core.result.Result;
 import com.beste.veterinary.core.result.ResultHelper;
-import com.beste.veterinary.dto.request.AnimalRequest;
+import com.beste.veterinary.dto.request.EntityRequest.AnimalRequest;
+import com.beste.veterinary.dto.request.UpdateRequest.AnimalUpdateRequest;
 import com.beste.veterinary.entity.Animal;
 import com.beste.veterinary.entity.Customer;
 import com.beste.veterinary.mapper.AnimalMapper;
@@ -46,11 +47,12 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public ResponseEntity<Result> update(Long id, AnimalRequest animalRequest) {
+    public ResponseEntity<Result> update(Long id, AnimalUpdateRequest animalUpdateRequest) {
         Optional<Animal> animalFromDb = animalRepository.findById(id);
-        Optional<Animal> isAnimalExist = animalRepository.findByNameAndCustomer(
-                animalRequest.getName(),
-                customerMapper.asEntity(animalRequest.getCustomer())
+        Optional<Animal> isAnimalExist = animalRepository.findByNameAndColorAndCustomer(
+                animalUpdateRequest.getName(),
+                animalUpdateRequest.getColor(),
+                customerMapper.asEntity(animalUpdateRequest.getCustomer())
         );
         if (animalFromDb.isEmpty()) {
             return globalExceptionHandler.handleNotFoundAnimalException();
@@ -58,7 +60,7 @@ public class AnimalServiceImpl implements AnimalService {
         if (isAnimalExist.isEmpty()) {
             try {
                 Animal animal = animalFromDb.get();
-                animalMapper.update(animal, animalRequest);
+                animalMapper.update(animal, animalUpdateRequest);
                 return new ResponseEntity<>(ResultHelper.updated(animalMapper.asOutput(animal)), HttpStatus.OK);
             }
             catch (Exception e) {

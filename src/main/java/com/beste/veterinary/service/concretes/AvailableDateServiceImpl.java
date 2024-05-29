@@ -3,7 +3,7 @@ package com.beste.veterinary.service.concretes;
 import com.beste.veterinary.core.GlobalExceptionHandler;
 import com.beste.veterinary.core.result.Result;
 import com.beste.veterinary.core.result.ResultHelper;
-import com.beste.veterinary.dto.request.AvailableDateRequest;
+import com.beste.veterinary.dto.request.EntityRequest.AvailableDateRequest;
 import com.beste.veterinary.entity.AvailableDate;
 import com.beste.veterinary.mapper.AvailableDateMapper;
 import com.beste.veterinary.mapper.DoctorMapper;

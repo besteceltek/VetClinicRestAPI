@@ -3,7 +3,7 @@ package com.beste.veterinary.service.concretes;
 import com.beste.veterinary.core.GlobalExceptionHandler;
 import com.beste.veterinary.core.result.Result;
 import com.beste.veterinary.core.result.ResultHelper;
-import com.beste.veterinary.dto.request.DoctorRequest;
+import com.beste.veterinary.dto.request.EntityRequest.DoctorRequest;
 import com.beste.veterinary.dto.response.DoctorResponse;
 import com.beste.veterinary.entity.Doctor;
 import com.beste.veterinary.mapper.DoctorMapper;
@@ -45,11 +45,13 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public ResponseEntity<Result> update(Long id, DoctorRequest doctorRequest) {
         Optional<Doctor> doctorFromDb = doctorRepository.findById(id);
-        Optional<Doctor> isDoctorExist = doctorRepository.
-                findByPhoneAndEmail(
-                        doctorRequest.getPhone(),
-                        doctorRequest.getEmail()
-                );
+        Optional<Doctor> isDoctorExist = doctorRepository.findByNameAndPhoneAndEmailAndAddressAndCity(
+                doctorRequest.getName(),
+                doctorRequest.getPhone(),
+                doctorRequest.getEmail(),
+                doctorRequest.getAddress(),
+                doctorRequest.getCity()
+        );
         if (doctorFromDb.isEmpty()) {
             return globalExceptionHandler.handleNotFoundDoctorException();
         }

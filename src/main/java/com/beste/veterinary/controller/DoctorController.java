@@ -1,8 +1,9 @@
 package com.beste.veterinary.controller;
 
 import com.beste.veterinary.core.result.Result;
-import com.beste.veterinary.dto.request.DoctorRequest;
+import com.beste.veterinary.dto.request.EntityRequest.DoctorRequest;
 import com.beste.veterinary.service.concretes.DoctorServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +17,12 @@ public class DoctorController {
     }
 
     @PostMapping
-    public ResponseEntity<Result> save(@RequestBody DoctorRequest doctorRequest) {
+    public ResponseEntity<Result> save(@Valid @RequestBody DoctorRequest doctorRequest) {
         return doctorService.save(doctorRequest);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Result> update(@PathVariable Long id, @RequestBody DoctorRequest doctorRequest) {
+    public ResponseEntity<Result> update(@PathVariable Long id, @Valid @RequestBody DoctorRequest doctorRequest) {
         return doctorService.update(id, doctorRequest);
     }
 

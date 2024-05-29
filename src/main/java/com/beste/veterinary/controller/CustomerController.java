@@ -1,8 +1,9 @@
 package com.beste.veterinary.controller;
 
 import com.beste.veterinary.core.result.Result;
-import com.beste.veterinary.dto.request.CustomerRequest;
+import com.beste.veterinary.dto.request.EntityRequest.CustomerRequest;
 import com.beste.veterinary.service.concretes.CustomerServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +17,12 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<Result> save(@RequestBody CustomerRequest customerRequest) {
+    public ResponseEntity<Result> save(@Valid @RequestBody CustomerRequest customerRequest) {
         return customerServiceImpl.save(customerRequest);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Result> update(@PathVariable Long id, @RequestBody CustomerRequest customerRequest) {
+    public ResponseEntity<Result> update(@Valid @PathVariable Long id, @RequestBody CustomerRequest customerRequest) {
         return customerServiceImpl.update(id, customerRequest);
     }
 

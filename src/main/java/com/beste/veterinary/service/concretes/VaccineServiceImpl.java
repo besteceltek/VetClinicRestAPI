@@ -3,10 +3,12 @@ package com.beste.veterinary.service.concretes;
 import com.beste.veterinary.core.GlobalExceptionHandler;
 import com.beste.veterinary.core.result.Result;
 import com.beste.veterinary.core.result.ResultHelper;
-import com.beste.veterinary.dto.request.VaccineRequest;
+import com.beste.veterinary.dto.request.EntityRequest.VaccineRequest;
+import com.beste.veterinary.entity.Animal;
 import com.beste.veterinary.entity.Vaccine;
 import com.beste.veterinary.mapper.AnimalMapper;
 import com.beste.veterinary.mapper.VaccineMapper;
+import com.beste.veterinary.repository.AnimalRepository;
 import com.beste.veterinary.repository.VaccineRepository;
 import com.beste.veterinary.service.abstracts.VaccineService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class VaccineServiceImpl implements VaccineService {
     private final AnimalMapper animalMapper;
     private final GlobalExceptionHandler globalExceptionHandler;
     private final VaccineRepository vaccineRepository;
+    private final AnimalRepository animalRepository;
     private final VaccineMapper vaccineMapper;
 
     @Override
@@ -31,6 +34,11 @@ public class VaccineServiceImpl implements VaccineService {
         // Check if animal selection is empty
         if (vaccineRequest.getAnimal().getId() == 0) {
             return globalExceptionHandler.handleAnimalIdNullException();
+        }
+
+        Optional<Animal> animalFromDb = animalRepository.findById(vaccineRequest.getAnimal().getId());
+        if (animalFromDb.isEmpty()) {
+            return globalExceptionHandler.handleNotFoundAnimalException();
         }
 
         Optional<Vaccine> isVaccineExist = vaccineRepository.findByNameAndCodeAndAnimalAndProtectionEndDateAfter(

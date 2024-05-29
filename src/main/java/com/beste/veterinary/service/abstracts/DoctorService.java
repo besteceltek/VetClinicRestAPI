@@ -1,7 +1,7 @@
 package com.beste.veterinary.service.abstracts;
 
 import com.beste.veterinary.core.result.Result;
-import com.beste.veterinary.dto.request.DoctorRequest;
+import com.beste.veterinary.dto.request.EntityRequest.DoctorRequest;
 import org.springframework.http.ResponseEntity;
 
 public interface DoctorService {

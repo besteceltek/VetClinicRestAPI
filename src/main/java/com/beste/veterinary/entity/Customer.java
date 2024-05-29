@@ -1,6 +1,10 @@
 package com.beste.veterinary.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.util.List;
@@ -13,7 +17,7 @@ public class Customer {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 50, nullable = false)
     private String name;
 
     @Column(length = 100, nullable = false)

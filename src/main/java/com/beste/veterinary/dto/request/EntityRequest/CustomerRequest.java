@@ -1,4 +1,4 @@
-package com.beste.veterinary.dto.request;
+package com.beste.veterinary.dto.request.EntityRequest;
 
 import lombok.Data;
 

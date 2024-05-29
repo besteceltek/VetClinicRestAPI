@@ -1,7 +1,8 @@
 package com.beste.veterinary.controller;
 
 import com.beste.veterinary.core.result.Result;
-import com.beste.veterinary.dto.request.AnimalRequest;
+import com.beste.veterinary.dto.request.EntityRequest.AnimalRequest;
+import com.beste.veterinary.dto.request.UpdateRequest.AnimalUpdateRequest;
 import com.beste.veterinary.service.concretes.AnimalServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,8 @@ public class AnimalController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Result> update(@PathVariable Long id, @RequestBody AnimalRequest animalRequest) {
-        return animalService.update(id, animalRequest);
+    public ResponseEntity<Result> update(@PathVariable Long id, @RequestBody AnimalUpdateRequest animalUpdateRequest) {
+        return animalService.update(id, animalUpdateRequest);
     }
 
     @DeleteMapping("/{id}")

@@ -1,7 +1,7 @@
 package com.beste.veterinary.controller;
 
 import com.beste.veterinary.core.result.Result;
-import com.beste.veterinary.dto.request.VaccineRequest;
+import com.beste.veterinary.dto.request.EntityRequest.VaccineRequest;
 import com.beste.veterinary.service.concretes.VaccineServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

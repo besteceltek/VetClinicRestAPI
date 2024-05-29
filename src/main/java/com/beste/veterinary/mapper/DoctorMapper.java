@@ -1,7 +1,7 @@
 package com.beste.veterinary.mapper;
 
 import com.beste.veterinary.dto.request.GlobalRequest.GlobalDoctorRequest;
-import com.beste.veterinary.dto.request.DoctorRequest;
+import com.beste.veterinary.dto.request.EntityRequest.DoctorRequest;
 import com.beste.veterinary.dto.response.DoctorResponse;
 import com.beste.veterinary.entity.Doctor;
 import org.mapstruct.Mapper;

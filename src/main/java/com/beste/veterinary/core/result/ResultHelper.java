@@ -36,6 +36,8 @@ public class ResultHelper {
         return new Result(404, Message.NOT_FOUND_CUSTOMER);
     }
 
+    public static Result notFoundAppointmentError() { return new Result(404, Message.NOT_FOUND_APPOINTMENT); }
+
     public static Result alreadyExistError() {
         return new Result(208, Message.ALREADY_EXIST);
     }
@@ -67,4 +69,6 @@ public class ResultHelper {
     public static Result doctorNotAvailableError() { return new Result(400, Message.DOCTOR_ERROR); }
 
     public static Result appointmentNotAvailableError() { return new Result(400, Message.APP0_NOT_AVA_ERROR); }
+
+    public static Result validationError(String message) { return new Result(400, message); }
 }

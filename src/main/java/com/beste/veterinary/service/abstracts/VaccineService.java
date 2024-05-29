@@ -1,7 +1,7 @@
 package com.beste.veterinary.service.abstracts;
 
 import com.beste.veterinary.core.result.Result;
-import com.beste.veterinary.dto.request.VaccineRequest;
+import com.beste.veterinary.dto.request.EntityRequest.VaccineRequest;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;

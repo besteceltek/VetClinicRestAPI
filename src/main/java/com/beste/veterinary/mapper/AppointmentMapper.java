@@ -1,6 +1,6 @@
 package com.beste.veterinary.mapper;
 
-import com.beste.veterinary.dto.request.AppointmentRequest;
+import com.beste.veterinary.dto.request.EntityRequest.AppointmentRequest;
 import com.beste.veterinary.dto.response.AppointmentResponse;
 import com.beste.veterinary.entity.Appointment;
 import org.mapstruct.Mapper;

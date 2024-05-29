@@ -1,6 +1,6 @@
 package com.beste.veterinary.mapper;
 
-import com.beste.veterinary.dto.request.VaccineRequest;
+import com.beste.veterinary.dto.request.EntityRequest.VaccineRequest;
 import com.beste.veterinary.dto.response.VaccineResponse;
 import com.beste.veterinary.entity.Vaccine;
 import org.mapstruct.Mapper;

@@ -3,7 +3,7 @@ package com.beste.veterinary.service.concretes;
 import com.beste.veterinary.core.GlobalExceptionHandler;
 import com.beste.veterinary.core.result.Result;
 import com.beste.veterinary.core.result.ResultHelper;
-import com.beste.veterinary.dto.request.CustomerRequest;
+import com.beste.veterinary.dto.request.EntityRequest.CustomerRequest;
 import com.beste.veterinary.dto.response.CustomerResponse;
 import com.beste.veterinary.entity.Customer;
 import com.beste.veterinary.mapper.CustomerMapper;
@@ -45,11 +45,13 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ResponseEntity<Result> update(Long id, CustomerRequest customerRequest) {
         Optional<Customer> customerFromDb = customerRepository.findById(id);
-        Optional<Customer> isCustomerExist = customerRepository.
-                findByEmailOrPhone(
-                        customerRequest.getEmail(),
-                        customerRequest.getPhone()
-                );
+        Optional<Customer> isCustomerExist = customerRepository.findByNameAndPhoneAndEmailAndAddressAndCity(
+                customerRequest.getName(),
+                customerRequest.getPhone(),
+                customerRequest.getEmail(),
+                customerRequest.getAddress(),
+                customerRequest.getCity()
+        );
         if (customerFromDb.isEmpty()) {
             return globalExceptionHandler.handleNotFoundCustomerException();
         }
@@ -87,7 +89,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (customer != null) {
             return new ResponseEntity<>(ResultHelper.success(customerMapper.asOutput(customer)), HttpStatus.OK);
         }
-        return globalExceptionHandler.handleNotFoundException();
+        return globalExceptionHandler.handleNotFoundCustomerException();
     }
 
     @Override

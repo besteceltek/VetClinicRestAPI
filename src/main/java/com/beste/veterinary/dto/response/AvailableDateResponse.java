@@ -7,6 +7,6 @@ import java.time.LocalDate;
 @Data
 public class AvailableDateResponse {
     private Long id;
-    private LocalDate date;
-    private DoctorResponse doctorResponse;
+    private LocalDate availableDate;
+    private DoctorResponse doctor;
 }

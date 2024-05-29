@@ -6,11 +6,19 @@ import com.beste.veterinary.core.result.ResultHelper;
 import com.beste.veterinary.core.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler{
+    private String extractValidationMessage(MethodArgumentNotValidException exception) {
+        String exceptionMessage = exception.getMessage();
+        String[] messageParts = exceptionMessage.split(";");
+        String finalPart = messageParts[messageParts.length -1];
+
+        return finalPart.trim().replaceAll("default message \\[|]]","");
+    }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Result> handleNotFoundException(){
@@ -30,6 +38,11 @@ public class GlobalExceptionHandler{
     @ExceptionHandler(NotFoundCustomerException.class)
     public ResponseEntity<Result> handleNotFoundCustomerException(){
         return new ResponseEntity<>(ResultHelper.notFoundCustomerError(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(NotFoundAppointmentException.class)
+    public ResponseEntity<Result> handleNotFoundAppointmentException(){
+        return new ResponseEntity<>(ResultHelper.notFoundAppointmentError(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(EntityExistsException.class)
@@ -81,4 +94,5 @@ public class GlobalExceptionHandler{
     public ResponseEntity<Result>  handleAppointmentNotAvailableException(){
         return new ResponseEntity<>(ResultHelper.appointmentNotAvailableError(), HttpStatus.BAD_REQUEST);
     }
+
 }
